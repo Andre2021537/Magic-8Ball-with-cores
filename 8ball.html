@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>8ball with personalities</title>
+</head>
+<body>
+
+<!-- CSS -->
+<style>
+
+/* Body Appearance */
+body {
+
+    font-family: sans-serif;
+    margin-top: 150px;
+    text-align: center;
+
+}
+
+    /* Removes auto underlining from Text */
+a {
+    text-decoration: inherit;
+}
+
+    /* Shake! Button */
+.shakeButton {
+
+    /* Font */
+    font-family: sans-serif;
+    font-weight: 100;
+    font-size: 30px;
+
+    /* Text Appearance */
+    color:lightblue;
+    text-align: center;
+
+    /* Outline Appearance */
+    border: solid 4px lightblue;
+
+    padding: 20px 40px;
+}
+
+    /* Apperance when mouse hovers over button */
+.shakeButton:hover {
+background-color: lightblue;
+color: white;
+}
+
+    /* Appearance when button is clicked */
+.shakeButton:active {
+    font-size: 28px;
+}
+
+/* Core drop down apperance */
+.input {
+  /* Font */
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+
+
+  /* Text Appearance */
+  color: gray;
+  text-align: center;
+
+  /* Outline Appearance */
+  border: solid 4px lightgray;
+    width:250px;
+}
+
+::placeholder {
+  color: gray;
+  opacity: 1; /* Firefox */
+}
+
+/* Input apperance */
+.input {
+  /* Font */
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+
+
+  /* Text Appearance */
+  color: gray;
+  text-align: center;
+
+  /* Outline Appearance */
+  border: solid 4px lightgray;
+    width:250px;
+}
+
+/* Input apperance */
+.asked {
+  /* Font */
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+  padding-right: 10px;
+  padding-left: 10px;
+
+  /* Text Appearance */
+  color: gray;
+  text-align: center;
+
+  /* Outline Appearance */
+  border: solid 4px lightgray;
+    width:250px;
+}
+
+/* Core drop down apperance */
+.corelist {
+  /* Font */
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+
+
+  /* Text Appearance */
+  color: gray;
+  text-align: center;
+
+  /* Outline Appearance */
+  border: solid 4px lightgray;
+  width:250px;
+}
+
+/* Core drop down apperance */
+.coredisplay {
+  /* Font */
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+  padding-left: 5px;
+
+  /* Text Appearance */
+  color: gray;
+  text-align: center;
+
+  /* Outline Appearance */
+  border: solid 4px lightgray;
+    width:250px;
+}
+
+/* LINE SPACING */
+.linespace {
+    padding-right: 10px;
+}
+
+/* LINE SPACING 2 */
+.linespace2 {
+    padding-right: 5px;
+}
+
+/* RESPONSE */
+.response {
+  /* Font */
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+  /* Text Appearance */
+  color: gray;
+  text-align: center;
+}
+
+.balltitle {
+  /* Font */
+  font-family: sans-serif;
+  font-weight: 100;
+  font-size: 30px;
+  /* Text Appearance */
+  color: gray;
+  text-align: center;
+  margin: 15px;
+}
+
+
+</style>
+
+<!-- HTML -->
+
+<!-- 8Ball Title -->
+<p class="balltitle">Magic 8Ball w/ Cores</p>
+
+<!-- Drop Down List -->
+<span class="coredisplay">Core: </span>
+<!-- Line Spacing -->
+<span class="linespace"></span>
+<!-- Cores drop down list -->
+ <select class="corelist" id="core">
+    <option value="classic">Classic</option>
+    <option value="joyful">Joyful</option>
+    <option value="depressed">Depressed</option>
+    <option value="grumpy">Grumpy</option>
+    <option value="shy">Shy</option>
+    <option value="wise">Wise</option>
+</select>
+
+<!-- Spacing -->
+<br><br>
+
+<!-- INPUT -->
+<input class="input" type="text" placeholder="Question" id="input">
+
+<!-- Line Spacing -->
+<span class="linespace2"></span>
+
+<!-- TIMES ASKED -->
+<span id="asked" class="asked">8Ball Uses: 0</span>
+
+
+<!-- Spacing -->
+<br><br><br>
+
+<!-- Shake Button -->
+<a href="#" class="shakeButton" onclick="shake()">Shake!</a>
+
+<!-- Spacing -->
+<br>
+<p class="response" id="response"></p>
+
+
+
+
+<!-- Javascript -->
+<script>
+
+
+
+
+  /////////////
+ /// CORES ///
+/////////////
+
+
+
+//Classic Core
+let classic = {
+  core: function() {
+    var responses = ['It is certain', 'As I see it, yes', 'Reply hazy, try again', 'Don\'t count on it', 'It is decidedly so', 'Most likely', 'Ask again later', 'My reply is no', 'Without a doubt', 'Outlook good', 'Better not tell you now', 'My sources say no', 'Yes - definitely', 'Yes', 'Cannot predict now', 'Outlook not so good', 'You may rely on it', 'Signs point to yes', 'Concentrate and ask again', 'Very doubtful']; //Change Responses to classic mode
+
+    //Check for no input
+    if (document.getElementById("input").value === '' || document.getElementById("input").value === ' ' || document.getElementById("input").value === '  ' || document.getElementById("input").value === '   ' || document.getElementById("input").value === '    ') {
+    document.getElementById("response").innerHTML = 'Please ask a question!';
+    timesAsked = timesAsked - 1; //Removes a time asked
+  } else {
+    document.getElementById("response").innerHTML = responses[Math.floor(Math.random() * responses.length)]; //Randomizes Responses
+    }
+  }
+}
+
+//Joyful Core
+let joyful = {
+  core: function() {
+    var responses = ['Of Course!', 'Perhaps...', 'Maybe next time!', 'Oh... Sorry...', 'Oh Definitely!', 'Lets see here...', 'Later, Later', 'Unfortunately not', '110%!', 'Great Idea!!', 'The answer would hurt...', 'My Buddies said no :(', 'Have I said yes yet?', '99% Sure', 'Too busy... Sorry!', 'Switch it up a little?', 'It\'ll help you!!', 'YES! YES!', 'Focus now...', 'It seems not... :(']; //Changes Responses to joyful mode
+
+    //Check for no input
+    if (document.getElementById("input").value === '' || document.getElementById("input").value === ' ' || document.getElementById("input").value === '  ' || document.getElementById("input").value === '   ' || document.getElementById("input").value === '    ') {
+    document.getElementById("response").innerHTML = 'Please ask a question!';
+    timesAsked = timesAsked - 1; //Removes a time asked
+  } else {
+    document.getElementById("response").innerHTML = responses[Math.floor(Math.random() * responses.length)]; //Randomizes Responses
+    }
+  }
+}
+
+//Depressed Core
+let depressed = {
+  core: function() {
+    var responses = ['Sure', 'I guess?', 'No way...', 'Probably not', 'Luck will help', 'Huh?', 'I suppose...', 'Too tired for this', 'Nah', 'Maybe', 'Think about it yourself', 'Idk', 'Joe says no', 'Good luck then', 'Ask later', 'If you\'re lucky', 'Shush...', 'Okay', 'Sweet, I guess?', 'Have fun...']; //Changes Responses to depressed mode
+
+    //Check for no input
+    if (document.getElementById("input").value === '' || document.getElementById("input").value === ' ' || document.getElementById("input").value === '  ' || document.getElementById("input").value === '   ' || document.getElementById("input").value === '    ') {
+    document.getElementById("response").innerHTML = 'Please ask a question!';
+    timesAsked = timesAsked - 1; //Removes a time asked
+  } else {
+    document.getElementById("response").innerHTML = responses[Math.floor(Math.random() * responses.length)]; //Randomizes Responses
+    }
+  }
+}
+
+//Grumpy Core
+let grumpy = {
+  core: function() {
+    var responses = ['Go away', 'Don\'t keep stupid favors', 'just do it already...', 'Talk to a comedian instead', 'Then get off my lawn', 'Maybe try asking someone about it?', 'Talk about a stupid question...', 'I\'m not listening', 'Oh of course! ...no', 'Who cares anyways?', 'Just try it out', 'Sure thing', 'Totally...', 'Live on the edge kid', 'This is too much for me', 'Ask someone else', 'Talking to sentient is even better than this', 'Doubtful', 'Use actual grammar next time', 'Too many questions']; //Changes Responses to grumpy mode
+
+    //Check for no input
+    if (document.getElementById("input").value === '' || document.getElementById("input").value === ' ' || document.getElementById("input").value === '  ' || document.getElementById("input").value === '   ' || document.getElementById("input").value === '    ') {
+    document.getElementById("response").innerHTML = 'Please ask a question!';
+    timesAsked = timesAsked - 1; //Removes a time asked
+  } else {
+    document.getElementById("response").innerHTML = responses[Math.floor(Math.random() * responses.length)]; //Randomizes Responses
+    }
+  }
+}
+
+//Shy Core
+let shy = {
+  core: function() {
+    var responses = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']; //Changes Responses to shy mode
+
+    //Check for no input
+    if (document.getElementById("input").value === '' || document.getElementById("input").value === ' ' || document.getElementById("input").value === '  ' || document.getElementById("input").value === '   ' || document.getElementById("input").value === '    ') {
+    document.getElementById("response").innerHTML = 'Please ask a question!';
+    timesAsked = timesAsked - 1; //Removes a time asked
+  } else {
+    document.getElementById("response").innerHTML = responses[Math.floor(Math.random() * responses.length)]; //Randomizes Responses
+    }
+  }
+}
+
+//Wise Core
+let wise = {
+  core: function() {
+    var responses = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']; //Changes Responses to shy mode
+
+    //Check for no input
+    if (document.getElementById("input").value === '' || document.getElementById("input").value === ' ' || document.getElementById("input").value === '  ' || document.getElementById("input").value === '   ' || document.getElementById("input").value === '    ') {
+    document.getElementById("response").innerHTML = 'Please ask a question!';
+    timesAsked = timesAsked - 1; //Removes a time asked
+  } else {
+    document.getElementById("response").innerHTML = responses[Math.floor(Math.random() * responses.length)]; //Randomizes Responses
+    }
+  }
+}
+
+
+
+
+
+//Test Core
+let test = {
+  core: function() {
+    var responses = ['', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '', '']; //Changes Responses to wise mode
+    //Check for no input
+    var blankcheck = document.getElementById('input').value; //Makes helpcheck Variable equal to the input field
+    if (blankcheck.search(/\s/) !== -1) { //If these words are found
+        return; //Respond with this
+    } else {
+    document.getElementById("response").innerHTML = responses[Math.floor(Math.random() * responses.length)]; //Randomizes Responses
+    }
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+  /////////////
+ /// SHAKE ///
+/////////////
+
+
+//Times Asked
+var timesAsked = 0;
+
+//When Shake Button Is Pressed
+   function shake() {
+    if (document.getElementById("core").value === 'classic') { //If Classic is selected
+        classic.core(); //Call classic core
+        timesAsked = timesAsked + 1; //Adds a time asked
+        document.getElementById("asked").innerHTML = "8Ball Uses: " + timesAsked; //Displays the times asked
+
+    } else if (document.getElementById("core").value === 'joyful') { //If Joyful is selected
+        joyful.core(); //call joyful core
+        timesAsked = timesAsked + 1; //Adds a time asked
+        document.getElementById("asked").innerHTML = "8Ball Uses: " + timesAsked; //Displays the times asked
+
+    } else if (document.getElementById("core").value === 'depressed') { //If Depressed is selected
+        depressed.core(); //call depressed core
+        timesAsked = timesAsked + 1; //Adds a time asked
+        document.getElementById("asked").innerHTML = "8Ball Uses: " + timesAsked; //Displays the times asked
+
+    } else if (document.getElementById("core").value === 'grumpy') { //If Grumpy is selected
+        grumpy.core(); //call grumpy core
+        timesAsked = timesAsked + 1; //Adds a time asked
+        document.getElementById("asked").innerHTML = "8Ball Uses: " + timesAsked; //Displays the times asked
+
+    } else if (document.getElementById("core").value === 'shy') { //If Shy is selected
+        shy.core(); //call shy core
+        timesAsked = timesAsked + 1; //Adds a time asked
+        document.getElementById("asked").innerHTML = "8Ball Uses: " + timesAsked; //Displays the times asked
+
+    } else if (document.getElementById("core").value === 'wise') { //If Wise is selected
+        wise.core(); //call wise core
+        timesAsked = timesAsked + 1; //Adds a time asked
+        document.getElementById("asked").innerHTML = "8Ball Uses: " + timesAsked; //Displays the times asked
+    };
+}
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
